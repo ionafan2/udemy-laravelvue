@@ -1,0 +1,69 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:5.7.38
+    restart: unless-stopped
+    tty: true
+    environment:
+      MYSQL_DATABASE: laravelvue
+      MYSQL_USER: laravelvue
+      MYSQL_PASSWORD: laravelvue
+      MYSQL_ROOT_PASSWORD: laravelvue #required
+      SERVICE_TAG: dev
+      SERVICE_NAME: mysql
+    ports:
+      - "3306:3306"
+    volumes:
+      - ../laravelvue/.var/mysql/data:/var/lib/mysql
+    networks:
+      - laravelvue
+
+  fpm:
+    build: ./config/docker/containers/fpm
+    depends_on:
+      - mysql
+    volumes:
+      - ../laravelvue:/var/www/html
+      - ../laravelvue/.var/logs/fpm:/var/log
+    networks:
+      - laravelvue
+
+  nginx:
+    build: ./config/docker/containers/nginx
+    depends_on:
+      - fpm
+    volumes:
+      - ../laravelvue:/var/www/html
+      - ../laravelvue/.var/logs/nginx:/var/log/nginx
+    ports:
+      - "80:80"
+    networks:
+      - laravelvue
+
+  redis:
+    depends_on:
+      - fpm
+    image: redis:4.0
+    volumes:
+      - ../laravelvue/.var/redis/data:/data
+    ports:
+      - '127.0.0.1:6379:6379/tcp'
+    networks:
+      - laravelvue
+
+  redisinsight:
+    image: 'redislabs/redisinsight:latest'
+    ports:
+      - '127.0.0.1:8001:8001'
+
+  mailhog:
+    image: mailhog/mailhog:latest
+    ports:
+      - 1025:1025
+      - 8025:8025
+    networks:
+      - laravelvue
+
+networks:
+  laravelvue:
