@@ -1,16 +1,18 @@
 import VueRouter from "vue-router";
+import Bookables from "./bookables/Bookables";
+import ExampleComponent from "./components/ExampleComponent";
 
 const router = new VueRouter({
     mode:"history",
     routes: [
         {
             path: "/",
-            component: require('./components/ExampleComponent.vue').default,
+            component: Bookables,
             name: "home"
         },
         {
             path: "/con",
-            component: require('./components/ExampleComponentSecond.vue').default,
+            component: ExampleComponent,
             name: "con"
         },
     ]
