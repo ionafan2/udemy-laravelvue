@@ -1,6 +1,12 @@
 <template>
     <div>
-        <bookable-list-item></bookable-list-item>
+        <bookable-list-item
+            item-title="Cheap villa"
+            item-content="A very chip villa"
+            :price="1500">
+
+        </bookable-list-item>
+        <bookable-list-item item-title="Cheap villa" item-content="A very chip villa"></bookable-list-item>
         <bookable-list-item></bookable-list-item>
         <bookable-list-item></bookable-list-item>
         <bookable-list-item></bookable-list-item>
