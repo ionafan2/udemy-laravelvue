@@ -11,7 +11,7 @@ const router = new VueRouter({
         {
             path: "/con",
             component: require('./components/ExampleComponentSecond.vue').default,
-            name: "home"
+            name: "con"
         },
     ]
 });

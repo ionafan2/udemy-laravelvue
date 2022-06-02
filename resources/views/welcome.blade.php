@@ -21,7 +21,7 @@
 </head>
     <body class="py-4">
         <div id="app">
-            <router-view></router-view>
+            <index></index>
         </div>
     </body>
 </html>
