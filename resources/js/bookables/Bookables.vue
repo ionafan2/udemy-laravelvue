@@ -20,6 +20,18 @@ export default {
     name: "Bookables",
     components: {
         BookableListItem
+    },
+    beforeCreate() {
+    },
+    created() {
+    },
+    beforeMount() {
+    },
+    mounted() {
+    },
+    beforeDestroy() {
+    },
+    destroyed() {
     }
 }
 </script>
