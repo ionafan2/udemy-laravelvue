@@ -19,7 +19,7 @@
     <!-- Styles -->
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
 </head>
-    <body class="py-4">
+    <body>
         <div id="app">
             <index></index>
         </div>

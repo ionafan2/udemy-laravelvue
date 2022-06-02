@@ -1,8 +1,12 @@
 <template>
     <div>
-        <router-link :to="{name: 'home'}">Home</router-link>
-        <router-link :to="{name: 'con'}">Con</router-link>
-        <router-view></router-view>
+        <nav class="navbar bg-white border-bottom navbar-light">
+            <router-link class="nav-link navbar-brand" :to="{name: 'home'}">Home</router-link>
+            <router-link class="nav-link" :to="{name: 'con'}">Con</router-link>
+        </nav>
+        <div class="container mt-4 mb-4 pr-4 pl-4">
+            <router-view></router-view>
+        </div>
     </div>
 </template>
 
