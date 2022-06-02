@@ -11,6 +11,11 @@ export default {
         'itemTitle': String,
         'itemContent': String,
         'price': Number
+    },
+    mounted() {
+        // setTimeout(_=>{
+        //     this.itemTitle = 'New Title';
+        // }, 1500);
     }
 }
 </script>
