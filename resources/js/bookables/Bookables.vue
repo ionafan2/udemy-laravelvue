@@ -1,5 +1,7 @@
 <template>
     <div>
+
+
         <div v-if="loading">Data is loading</div>
         <div v-else>
             <bookable-list-item
@@ -26,7 +28,13 @@ export default {
         return {
             bookables: null,
             loading: false,
+            columns: 3
         }
+    },
+    computed: {
+      rows() {
+          return this.bookables ? Math.ceil(this.bookables.length / this.columns) : 0;
+      }
     },
     created() {
         this.loading = true;
@@ -34,6 +42,26 @@ export default {
             this.bookables = [
                 {
                     title: 'Cheap villa',
+                    content: 'Very Cheap villa'
+                },
+                {
+                    title: 'Cheap villa 2',
+                    content: 'Very Cheap villa'
+                },
+                {
+                    title: 'Cheap villa 2',
+                    content: 'Very Cheap villa'
+                },
+                {
+                    title: 'Cheap villa 2',
+                    content: 'Very Cheap villa'
+                },
+                {
+                    title: 'Cheap villa 2',
+                    content: 'Very Cheap villa'
+                },
+                {
+                    title: 'Cheap villa 2',
                     content: 'Very Cheap villa'
                 },
                 {
