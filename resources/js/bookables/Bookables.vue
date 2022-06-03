@@ -1,6 +1,7 @@
 <template>
     <div>
         <bookable-list-item
+            v-if="bookable1"
             :item-title="bookable1.title"
             :item-content="bookable1.content"
             :price="1500">
@@ -8,17 +9,10 @@
         </bookable-list-item>
 
         <bookable-list-item
+            v-if="bookable2"
             :item-title="bookable2.title"
             :item-content="bookable2.content"
             :price="1500">
-
-        </bookable-list-item>
-
-        <bookable-list-item
-            :item-title="bookable3.title"
-            :item-content="bookable3.content"
-            :price="1500">
-
         </bookable-list-item>
     </div>
 </template>
@@ -37,11 +31,7 @@ export default {
             bookable2: null,
         }
     },
-    beforeCreate() {
-    },
     created() {
-        console.log(this.bookable1);
-        console.log(this.bookable2);
         setTimeout(() => {
             this.bookable1 = {
                 title: 'Cheap villa',
@@ -51,30 +41,7 @@ export default {
                 title: 'Cheap villa 2',
                 content: 'Very Cheap villa'
             };
-            this.bookable3 = {
-                title: 'Expensive villa 3',
-                content: 'Very Expensive villa'
-            };
-        }, 5000);
-
-        setTimeout(() => {
-            console.log('First Change');
-            this.bookable1.title = 'You will see this'
-        }, 8000);
-
-        setTimeout(() => {
-            console.log('Second Change');
-            this.bookable3.title = 'You wont see this'
-        }, 12000);
-
-    },
-    beforeMount() {
-    },
-    mounted() {
-    },
-    beforeDestroy() {
-    },
-    destroyed() {
+        }, 2000);
     }
 }
 </script>
