@@ -1,6 +1,6 @@
 import VueRouter from "vue-router";
 import Bookables from "./bookables/Bookables";
-import ExampleComponent from "./components/ExampleComponent";
+import Bookable from "./bookable/Bookable";
 
 const router = new VueRouter({
     mode:"history",
@@ -11,8 +11,8 @@ const router = new VueRouter({
             name: "home"
         },
         {
-            path: "/con",
-            component: ExampleComponent,
+            path: "/bookables/:id",
+            component: Bookable,
             name: "con"
         },
     ]
