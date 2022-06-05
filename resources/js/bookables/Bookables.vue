@@ -21,6 +21,23 @@
 <script>
 import BookableListItem from "./BookableListItem";
 
+const p = new Promise((resolve, reject) => {
+    console.log(resolve);
+    console.log(reject);
+    setTimeout(() => {
+        resolve('result');
+    }, 3000);
+})
+    .then(result => "hello again " + result)
+    .then(result => {
+        console.log(result);
+    })
+    .catch(result => {
+        console.log(`Error ${result}`);
+    });
+
+console.log(p);
+
 export default {
     name: "Bookables",
     components: {
