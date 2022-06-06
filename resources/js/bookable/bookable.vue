@@ -1,28 +1,31 @@
 <template>
     <div>
-<!--        <bookable-list-item-->
-<!--            :item-title="bookable.title"-->
-<!--            :item-description="bookable.description"-->
-<!--            :price="bookable.price"-->
-<!--        >-->
-<!--        </bookable-list-item>-->
+        <div v-if="loading">Data is loading</div>
+        <div v-else>
+            <bookable-list-item v-bind="bookable"></bookable-list-item>
+        </div>
     </div>
 </template>
 
 <script>
+import BookableListItem from "../bookables/BookableListItem";
+
 export default {
-    name: "bookable",
+    name: "Bookable",
+    components: {
+        BookableListItem
+    },
     data() {
         return {
+            loading: false,
             bookable: null
         }
     },
     created() {
-        //console.log(this.$route.params.id);
+        this.loading = true;
         axios.get(`/api/bookables/${this.$route.params.id}`).then(result => {
             this.bookable = result.data;
-            console.log('test');
-
+            this.loading = false;
         });
     }
 }

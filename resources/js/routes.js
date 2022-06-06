@@ -13,7 +13,7 @@ const router = new VueRouter({
         {
             path: "/bookables/:id",
             component: Bookable,
-            name: "con"
+            name: "bookable-show"
         },
     ]
 });

@@ -2,9 +2,10 @@
     <div class="card w-100">
         <div class="card-body">
             <h5 class="card-title">
-                {{ itemTitle }}
+                {{ title }}
             </h5>
-            <p class="card-text">{{ itemDescription }}</p>
+            <p class="card-text">{{ description }}</p>
+            <p class="card-footer">{{ price | currency }}</p>
         </div>
     </div>
 </template>
@@ -12,14 +13,12 @@
 <script>
 export default {
     props: {
-        'itemTitle': String,
-        'itemDescription': String,
-        'price': Number
+        'title': String,
+        'description': String,
+        'price': Number,
+        'id': Number
     },
     mounted() {
-        // setTimeout(_=>{
-        //     this.itemTitle = 'New Title';
-        // }, 1500);
     }
 }
 </script>

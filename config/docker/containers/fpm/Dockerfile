@@ -10,9 +10,7 @@ RUN apt-get update \
         libicu-dev \
         git \
         vim \
-        unzip \
-        nodejs \
-        npm
+        unzip
 
 RUN pecl install xdebug apcu mcrypt redis \
     && docker-php-ext-install \
