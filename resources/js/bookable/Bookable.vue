@@ -1,8 +1,11 @@
 <template>
     <div>
-        <div v-if="loading">Data is loading</div>
-        <div v-else>
-            <bookable-list-item v-bind="bookable"></bookable-list-item>
+        <div class="row" v-if="loading"><div class="col-md-12">Data is loading...</div></div>
+        <div class="row" v-else >
+            <div class="col-md-8">
+                <bookable-list-item v-bind="bookable"></bookable-list-item>
+            </div>
+            <div class="col-md-4">Test</div>
         </div>
     </div>
 </template>
@@ -31,7 +34,3 @@ export default {
 }
 
 </script>
-
-<style scoped>
-
-</style>
