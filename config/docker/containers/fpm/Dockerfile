@@ -12,8 +12,17 @@ RUN apt-get update \
         vim \
         unzip
 
-RUN pecl install xdebug apcu mcrypt redis \
-    && docker-php-ext-install \
+# Better shell client
+RUN apt-get -y install fish
+
+# Install nodejs
+#RUN apt-get -y install curl
+#RUN curl -sL https://deb.nodesource.com/setup_18.x  | bash -
+#RUN apt-get -y install nodejs
+
+RUN pecl install xdebug apcu mcrypt redis
+
+RUN docker-php-ext-install \
         gd \
         exif \
         zip \
@@ -32,6 +41,7 @@ RUN docker-php-ext-enable \
         pdo_mysql \
         redis
 
+# Setup xdebug
 RUN echo "xdebug.mode=debug" >> /usr/local/etc/php/conf.d/xdebug.ini \
     && echo "xdebug.client_host=host.docker.internal" >> /usr/local/etc/php/conf.d/xdebug.ini \
     && echo "xdebug.start_with_request=trigger" >> /usr/local/etc/php/conf.d/xdebug.ini \
