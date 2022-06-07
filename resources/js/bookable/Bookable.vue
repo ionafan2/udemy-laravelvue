@@ -27,7 +27,7 @@ export default {
     created() {
         this.loading = true;
         axios.get(`/api/bookables/${this.$route.params.id}`).then(result => {
-            this.bookable = result.data;
+            this.bookable = result.data.data;
             this.loading = false;
         });
     }
