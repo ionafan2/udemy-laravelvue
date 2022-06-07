@@ -2,21 +2,25 @@
     <div>
         <div class="row" v-if="loading"><div class="col-md-12">Data is loading...</div></div>
         <div class="row" v-else >
-            <div class="col-md-8">
+            <div class="col-md-7">
                 <bookable-list-item v-bind="bookable"></bookable-list-item>
             </div>
-            <div class="col-md-4">Test</div>
+            <div class="col-md-5">
+                <availability></availability>
+            </div>
         </div>
     </div>
 </template>
 
 <script>
 import BookableListItem from "../bookables/BookableListItem";
+import Availability from "./Availability";
 
 export default {
     name: "Bookable",
     components: {
-        BookableListItem
+        BookableListItem,
+        Availability
     },
     data() {
         return {
