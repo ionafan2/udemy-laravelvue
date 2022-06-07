@@ -25,5 +25,9 @@
         "vue-router": "^3.5.4",
         "vue-template-compiler": "^2.6.12",
         "vue2-filters": "^0.14.0"
+    },
+    "dependencies": {
+        "vue-moment": "^4.1.0",
+        "vue2-daterange-picker": "^0.6.8"
     }
 }

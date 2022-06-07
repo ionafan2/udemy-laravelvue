@@ -7,7 +7,8 @@
 require('./bootstrap');
 
 import VueRouter from "vue-router";
-import Vue2Filters from 'vue2-filters'
+import Vue2Filters from 'vue2-filters';
+import VueMoment from 'vue-moment';
 
 import router from "./routes";
 import Index from "./index";
@@ -26,10 +27,11 @@ window.Vue = require('vue').default;
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 
-Vue.use(Vue2Filters)
-Vue.use(VueRouter);
+window.Vue.use(Vue2Filters)
+window.Vue.use(VueRouter);
+window.Vue.use(VueMoment);
 
-const app = new Vue({
+const app = new window.Vue({
     el: '#app',
     router,
     components: {
