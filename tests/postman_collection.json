@@ -1,0 +1,138 @@
+{
+	"info": {
+		"_postman_id": "d3d8ef6e-30dc-4924-9acd-4a3965b54c1d",
+		"name": "LaravelVue API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "817453"
+	},
+	"item": [
+		{
+			"name": "Bookables",
+			"item": [
+				{
+					"name": "Get all",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/bookables",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"bookables"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get one by ID",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/bookables/3",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"bookables",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Availability",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/bookables/1/availability?startDate=2022-07-07&endDate=2022-07-10",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"bookables",
+								"1",
+								"availability"
+							],
+							"query": [
+								{
+									"key": "startDate",
+									"value": "2022-07-07"
+								},
+								{
+									"key": "endDate",
+									"value": "2022-07-10"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "url",
+			"value": "http://laravelvue.com/api"
+		}
+	]
+}
