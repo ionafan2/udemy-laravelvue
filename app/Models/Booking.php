@@ -9,6 +9,8 @@ class Booking extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['startDate', 'endDate'];
+
     public function bookable()
     {
         return $this->belongsTo(Bookable::class);
