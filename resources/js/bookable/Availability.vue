@@ -4,14 +4,23 @@
 
         <div class="form row">
             <div class="form-group col-md-6">
-                <label for="from">From:</label>
-                <input type="text" name="from" id="from" class="form-control form-control-sm" placeholder="Start date"
+                <label for="startDate">From:</label>
+                <input type="text" name="startDate" id="startDate" :class="[{'is-invalid': this.errorFor('startDate')}]"
+                       class="form-control form-control-sm" placeholder="Start date"
                        v-model="startDate">
+                <div v-for="(error,i) in this.errorFor('startDate')" class="invalid-feedback" :key="'startDate'+ i">
+                    {{ error }}
+                </div>
             </div>
             <div class="form-group col-md-6">
-                <label for="to">To:</label>
-                <input type="text" name="to" id="to" class="form-control form-control-sm" placeholder="End date"
+                <label for="endDate">To:</label>
+                <input type="text" name="endDate" id="endDate" :class="[{'is-invalid': this.errorFor('endDate')}]"
+                       class="form-control form-control-sm" placeholder="End date"
                        v-model="endDate">
+
+                <div v-for="(error,i) in this.errorFor('endDate')" class="invalid-feedback" :key="'endDate'+ i">
+                    {{ error }}
+                </div>
             </div>
         </div>
         <div class="form row mt-2">
@@ -19,7 +28,7 @@
                 <DatePicker @period-selected="periodSelected" format="DD/MM/YYYY"></DatePicker>
             </div>
         </div>
-            <div v-if="loading">LOADING........</div>
+        <div v-if="loading">LOADING........</div>
     </div>
 </template>
 
@@ -57,24 +66,37 @@ export default {
                         endDate: this.endDate
                     }
                 }).then(result => {
-                    this.status = result.status;
+                this.status = result.status;
 
-                    console.log(result);
-                    this.loading = false;
+                console.log(result);
+                this.loading = false;
 
-                }).catch(error => {
+            }).catch(error => {
                 if (422 === error.response.status) {
                     this.errors = error.response.data.errors;
                 }
 
                 this.status = error.response.status;
-                }).then(() => this.loading = false);
+            }).then(() => this.loading = false);
 
+        },
+        errorFor(field) {
+            return this.hasErrors && this.errors[field] ? this.errors[field] : null;
         }
     },
     created() {
     },
-    computed: {}
+    computed: {
+        hasErrors() {
+            return 422 === this.status && this.errors !== null;
+        },
+        hasAvailability() {
+            return 200 === this.status;
+        },
+        noAvailability() {
+            return 404 === this.status;
+        }
+    }
 }
 </script>
 
