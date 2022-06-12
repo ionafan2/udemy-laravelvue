@@ -46,6 +46,9 @@ import moment from 'moment';
 export default {
     name: "Availability",
     components: {DatePicker},
+    props: {
+        bookableId: String
+    },
     data() {
         return {
             loading: false,
@@ -64,7 +67,7 @@ export default {
             this.endDate = moment(endDate).format('YYYY-MM-DD');
 
             axios.get(
-                `/api/bookables/${this.$route.params.id}/availability`, {
+                `/api/bookables/${this.bookableId}/availability`, {
                     params: {
                         startDate: this.startDate,
                         endDate: this.endDate
