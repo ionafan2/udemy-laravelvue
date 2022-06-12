@@ -1,26 +1,36 @@
 <template>
-    <div>
-        <div class="row" v-if="loading"><div class="col-md-12">Data is loading...</div></div>
-        <div class="row" v-else >
-            <div class="col-md-7">
-                <bookable-list-item v-bind="bookable"></bookable-list-item>
+    <div class="row">
+        <div class="col-md-7 pb-4">
+            <div class="card">
+                <div class="card-body">
+                    <div v-if="!loading">
+                        <h2>{{ bookable.title }}</h2>
+                        <hr>
+                        <article>
+                            {{ bookable.description }}
+                        </article>
+                    </div>
+                    <div v-else>Loading...</div>
+                </div>
             </div>
-            <div class="col-md-5">
-                <availability></availability>
-            </div>
+
+            <review-list></review-list>
+        </div>
+        <div class="col-md-5">
+            <availability></availability>
         </div>
     </div>
 </template>
 
 <script>
-import BookableListItem from "../bookables/BookableListItem";
 import Availability from "./Availability";
+import ReviewList from "./ReviewList";
 
 export default {
     name: "Bookable",
     components: {
-        BookableListItem,
-        Availability
+        Availability,
+        ReviewList
     },
     data() {
         return {
