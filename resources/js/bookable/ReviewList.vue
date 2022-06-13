@@ -5,7 +5,9 @@
             <div class="border-bottom d-none d-md-block" v-for="(review,i) in reviews" :key="i">
                 <div class="row pt-4 ">
                     <div class="col-md-6">Victor Pupkin</div>
-                    <div class="col-md-6 d-flex justify-content-end">{{ review.rating }}</div>
+                    <div class="col-md-6 d-flex justify-content-end">{{ review.rating }}
+                    <star-rating ></star-rating>
+                    </div>
                 </div>
                 <div class="row">
                     <div class="col-md-12">
@@ -27,6 +29,8 @@
 
 export default {
     name: "ReviewList",
+    components: {},
+
     props: {
         bookableId: String
     },

@@ -11,7 +11,9 @@ import Vue2Filters from 'vue2-filters';
 import VueMoment from 'vue-moment';
 
 import router from "./routes";
+
 import Index from "./index";
+import StarRating from "./shared/components/StarRating";
 
 window.Vue = require('vue').default;
 
@@ -33,6 +35,9 @@ window.Vue.use(VueRouter);
 window.Vue.use(VueMoment);
 // @see https://github.com/brockpetrie/vue-moment
 // @see https://momentjs.com/
+
+//Globally registered
+window.Vue.component('star-rating', StarRating);
 
 const app = new window.Vue({
     el: '#app',
