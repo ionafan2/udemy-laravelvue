@@ -27,8 +27,10 @@
         "vue2-filters": "^0.14.0"
     },
     "dependencies": {
+        "@fortawesome/fontawesome-free": "^6.1.1",
+        "autoprefixer": "10.4.5",
         "moment": "^2.29.3",
-        "vue-moment": "^4.1.0",
-        "vue-hotel-datepicker": "^4.5.1"
+        "vue-hotel-datepicker": "^4.5.1",
+        "vue-moment": "^4.1.0"
     }
 }
