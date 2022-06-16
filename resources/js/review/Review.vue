@@ -31,15 +31,25 @@ export default {
                 rating: 5,
                 content: null
             },
-            existingReview: null
+            existingReview: null,
+            booking: null
         }
     },
     created() {
         this.loading = true;
         axios(`/api/reviews/${this.$route.params.id}`)
-            .then(response => this.existingReview = response.data.data)
-            .catch(errors => console.log(errors))
-            .then(_ => this.loading = false)
+            .then(response => {
+                this.existingReview = response.data.data // do not return
+            })
+            .catch(error => {
+                if (error.response && error.response.status && 404 === error.response.status) {
+                       return axios(`/api/booking-by-review/${this.$route.params.id}`)
+                           .then((response) => {
+                                this.booking = response.data.data;
+                           });
+                }
+            })
+            .then(() => this.loading = false)
         ;
     },
     computed: {
