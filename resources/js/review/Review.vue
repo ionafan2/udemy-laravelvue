@@ -1,10 +1,9 @@
 <template>
     <div>
-
         <form>
             <div class="mb-3">
                 <label for="rating" class="form-label text-muted">Select Star Rating</label>
-                <star-rating :rating="review.rating" class="fa-3x" @rating:changed="review.rating = $event"></star-rating>
+                <star-rating v-model="review.rating" class="fa-3x"></star-rating>
             </div>
             <div class="mb-3">
                 <label for="content" class="form-label text-muted">Your review content</label>
@@ -13,7 +12,6 @@
 
             <button class="btn btn-lg btn-primary w-100 form-control">Submit</button>
         </form>
-
     </div>
 </template>
 
