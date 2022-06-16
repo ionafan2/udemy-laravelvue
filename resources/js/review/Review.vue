@@ -4,7 +4,7 @@
         <form>
             <div class="mb-3">
                 <label for="rating" class="form-label text-muted">Select Star Rating</label>
-                <star-rating :rating="5" class="fa-3x" @rating:changed="review.rating = $event"></star-rating>
+                <star-rating :rating="review.rating" class="fa-3x" @rating:changed="review.rating = $event"></star-rating>
             </div>
             <div class="mb-3">
                 <label for="content" class="form-label text-muted">Your review content</label>
