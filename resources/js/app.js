@@ -6,16 +6,17 @@
 
 require('./bootstrap');
 
+import Vue from "vue";
+window.Vue = Vue;
+
 import VueRouter from "vue-router";
 import Vue2Filters from 'vue2-filters';
 import VueMoment from 'vue-moment';
 
 import router from "./routes";
-
 import Index from "./index";
 import StarRating from "./shared/components/StarRating";
 
-window.Vue = require('vue').default;
 
 /**
  * The following block of code may be used to automatically register your
@@ -28,16 +29,16 @@ window.Vue = require('vue').default;
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-window.Vue.use(Vue2Filters)
+Vue.use(Vue2Filters)
 // @see https://www.npmjs.com/package/vue2-filters
 
-window.Vue.use(VueRouter);
-window.Vue.use(VueMoment);
+Vue.use(VueRouter);
+Vue.use(VueMoment);
 // @see https://github.com/brockpetrie/vue-moment
 // @see https://momentjs.com/
 
 //Globally registered
-window.Vue.component('star-rating', StarRating);
+Vue.component('star-rating', StarRating);
 
 const app = new window.Vue({
     el: '#app',

@@ -41,7 +41,6 @@ export default {
         placeHoldersInRow(row) {
             return this.columns - this.bookablesInRow(row).length;
         }
-
     },
     created() {
         this.loading = true;
@@ -51,7 +50,6 @@ export default {
             this.loading = false;
         });
     }
-
 }
 </script>
 

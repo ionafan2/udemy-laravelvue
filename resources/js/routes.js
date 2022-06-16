@@ -15,7 +15,7 @@ const router = new VueRouter({
             path: "/bookables/:id",
             component: Bookable,
             name: "bookable"
-        },,
+        },
         {
             path: "/review/:id",
             component:  Review,
