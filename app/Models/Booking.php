@@ -29,7 +29,7 @@ class Booking extends Model
             ->where('startDate', '<=', $endDate);
     }
 
-    public static function findByReviewKye(string $reviewKey): ?Booking
+    public static function findByReviewKey(string $reviewKey): ?Booking
     {
         return static::where('review_key', $reviewKey)->with('bookable')->get()->first();
     }

@@ -11,6 +11,8 @@ class Review extends Model
 
     protected $keyType = 'string';
 
+    protected $fillable = ['id', 'content', 'rating'];
+
     public function getIncrementing()
     {
         return false;
