@@ -40,6 +40,8 @@ Vue.use(VueMoment);
 //Globally registered
 Vue.component('star-rating', StarRating);
 
+Vue.prototype.$log = console.log;
+
 const app = new window.Vue({
     el: '#app',
     router,
