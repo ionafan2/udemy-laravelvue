@@ -16,6 +16,7 @@ import VueMoment from 'vue-moment';
 import router from "./routes";
 import Index from "./index";
 import StarRating from "./shared/components/StarRating";
+import FatalError from "./shared/components/FatalError";
 
 
 /**
@@ -39,6 +40,7 @@ Vue.use(VueMoment);
 
 //Globally registered
 Vue.component('star-rating', StarRating);
+Vue.component("fatal-error", FatalError);
 
 Vue.prototype.$log = console.log;
 
