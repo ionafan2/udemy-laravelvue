@@ -63,6 +63,11 @@ export default {
             this.startDate = moment(startDate).format('YYYY-MM-DD');
             this.endDate = moment(endDate).format('YYYY-MM-DD');
 
+            this.$store.commit('setLastSearch', {
+                startDate: this.startDate,
+                endDate: this.endDate
+            })
+
             axios.get(
                 `/api/bookables/${this.bookableId}/availability`, {
                     params: {
