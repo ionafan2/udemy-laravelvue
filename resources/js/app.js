@@ -7,6 +7,7 @@
 require('./bootstrap');
 
 import Vue from "vue";
+
 window.Vue = Vue;
 
 import VueRouter from "vue-router";
@@ -14,8 +15,10 @@ import Vuex from 'vuex'
 import Vue2Filters from 'vue2-filters';
 import VueMoment from 'vue-moment';
 
-import router from "./routes";
 import Index from "./index";
+import Router from "./routes";
+import StoreDefinition from "./store";
+
 import StarRating from "./shared/components/StarRating";
 import FatalError from "./shared/components/FatalError";
 import ValidationErrors from "./shared/components/ValidationErrors";
@@ -50,9 +53,12 @@ Vue.component("success", Success);
 
 Vue.prototype.$log = console.log;
 
+const store = new Vuex.Store(StoreDefinition);
+
 const app = new window.Vue({
     el: '#app',
-    router,
+    store,
+    router: Router,
     components: {
         index: Index
     }
