@@ -51,8 +51,8 @@ export default {
         return {
             loading: false,
             status: null,
-            startDate: null,
-            endDate: null
+            startDate: this.$store.state.lastSearch.startDate,
+            endDate: this.$store.state.lastSearch.endDate
         }
     },
     methods: {
