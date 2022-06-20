@@ -63,7 +63,7 @@ export default {
             this.startDate = moment(startDate).format('YYYY-MM-DD');
             this.endDate = moment(endDate).format('YYYY-MM-DD');
 
-            this.$store.commit('setLastSearch', {
+            this.$store.dispatch('setLastSearch', {
                 startDate: this.startDate,
                 endDate: this.endDate
             })
