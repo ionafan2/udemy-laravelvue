@@ -31,9 +31,9 @@ import Success from "./shared/components/Success";
  *
  * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
  */
-
-// const files = require.context('./', true, /\.vue$/i)
-// files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
+// Globally registered Shared Components
+const files = require.context('./shared/components/', true, /\.vue$/i)
+files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.use(VueRouter);
 Vue.use(Vuex);
@@ -44,12 +44,6 @@ Vue.use(Vue2Filters)
 Vue.use(VueMoment);
 // @see https://github.com/brockpetrie/vue-moment
 // @see https://momentjs.com/
-
-//Globally registered
-Vue.component('star-rating', StarRating);
-Vue.component("fatal-error", FatalError);
-Vue.component("v-errors", ValidationErrors);
-Vue.component("success", Success);
 
 Vue.prototype.$log = console.log;
 
