@@ -43,6 +43,9 @@ import 'vue-hotel-datepicker/dist/vueHotelDatepicker.css';
 
 import moment from 'moment';
 
+import {is422} from "../shared/utils/response";
+
+
 export default {
     name: "Availability",
     components: {DatePicker},
@@ -79,7 +82,7 @@ export default {
                 this.loading = false;
 
             }).catch(error => {
-                if (422 === error.response.status) {
+                if (is422(error)) {
                     this.errors = error.response.data.errors;
                 }
 
