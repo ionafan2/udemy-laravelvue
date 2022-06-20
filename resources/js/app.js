@@ -10,6 +10,7 @@ import Vue from "vue";
 window.Vue = Vue;
 
 import VueRouter from "vue-router";
+import Vuex from 'vuex'
 import Vue2Filters from 'vue2-filters';
 import VueMoment from 'vue-moment';
 
@@ -31,10 +32,12 @@ import Success from "./shared/components/Success";
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
+Vue.use(VueRouter);
+Vue.use(Vuex);
+
 Vue.use(Vue2Filters)
 // @see https://www.npmjs.com/package/vue2-filters
 
-Vue.use(VueRouter);
 Vue.use(VueMoment);
 // @see https://github.com/brockpetrie/vue-moment
 // @see https://momentjs.com/
