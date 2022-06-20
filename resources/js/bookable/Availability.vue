@@ -12,7 +12,7 @@
                 <input type="text" name="startDate" id="startDate" :class="[{'is-invalid': errorFor('startDate')}]"
                        class="form-control form-control-sm" placeholder="Start date"
                        v-model="startDate">
-                <v-errors :errors="errorFor('from')"></v-errors>
+                <v-errors :errors="errorFor('startDate')"></v-errors>
             </div>
             <div class="form-group col-md-6">
                 <label for="endDate">To:</label>
@@ -32,17 +32,17 @@
 </template>
 
 <script>
+// DatePicker @see https://github.com/krystalcampioni/vue-hotel-datepicker
 import DatePicker from 'vue-hotel-datepicker'
 import 'vue-hotel-datepicker/dist/vueHotelDatepicker.css';
-//@see https://github.com/krystalcampioni/vue-hotel-datepicker
 
 import moment from 'moment';
-
 import {is422} from "../shared/utils/response";
-
+import ValidationErrors from "../shared/mixins/validationErrors";
 
 export default {
     name: "Availability",
+    mixins: [ValidationErrors],
     components: {DatePicker},
     props: {
         bookableId: String
@@ -51,7 +51,6 @@ export default {
         return {
             loading: false,
             status: null,
-            errors: null,
             startDate: null,
             endDate: null
         }
@@ -84,9 +83,6 @@ export default {
                 this.status = error.response.status;
             }).then(() => this.loading = false);
 
-        },
-        errorFor(field) {
-            return this.hasErrors && this.errors[field] ? this.errors[field] : null;
         }
     },
     created() {
