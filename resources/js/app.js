@@ -17,7 +17,7 @@ import router from "./routes";
 import Index from "./index";
 import StarRating from "./shared/components/StarRating";
 import FatalError from "./shared/components/FatalError";
-
+import ValidationErrors from "./shared/components/ValidationErrors";
 
 /**
  * The following block of code may be used to automatically register your
@@ -41,6 +41,7 @@ Vue.use(VueMoment);
 //Globally registered
 Vue.component('star-rating', StarRating);
 Vue.component("fatal-error", FatalError);
+Vue.component("v-errors", ValidationErrors);
 
 Vue.prototype.$log = console.log;
 

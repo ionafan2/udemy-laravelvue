@@ -9,22 +9,17 @@
         <div class="form row">
             <div class="form-group col-md-6">
                 <label for="startDate">From:</label>
-                <input type="text" name="startDate" id="startDate" :class="[{'is-invalid': this.errorFor('startDate')}]"
+                <input type="text" name="startDate" id="startDate" :class="[{'is-invalid': errorFor('startDate')}]"
                        class="form-control form-control-sm" placeholder="Start date"
                        v-model="startDate">
-                <div v-for="(error,i) in this.errorFor('startDate')" class="invalid-feedback" :key="'startDate'+ i">
-                    {{ error }}
-                </div>
+                <v-errors :errors="errorFor('from')"></v-errors>
             </div>
             <div class="form-group col-md-6">
                 <label for="endDate">To:</label>
-                <input type="text" name="endDate" id="endDate" :class="[{'is-invalid': this.errorFor('endDate')}]"
+                <input type="text" name="endDate" id="endDate" :class="[{'is-invalid': errorFor('endDate')}]"
                        class="form-control form-control-sm" placeholder="End date"
                        v-model="endDate">
-
-                <div v-for="(error,i) in this.errorFor('endDate')" class="invalid-feedback" :key="'endDate'+ i">
-                    {{ error }}
-                </div>
+                <v-errors :errors="errorFor('endDate')"></v-errors>
             </div>
         </div>
         <div class="form row mt-2">
