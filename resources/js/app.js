@@ -61,5 +61,8 @@ const app = new window.Vue({
     router: Router,
     components: {
         index: Index
+    },
+    beforeCreate() {
+        this.$store.dispatch('loadStoredState');
     }
 });
