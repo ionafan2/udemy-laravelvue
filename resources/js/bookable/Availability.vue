@@ -45,7 +45,7 @@ export default {
     mixins: [ValidationErrors],
     components: {DatePicker},
     props: {
-        bookableId: String
+        bookableId: [String, Number]
     },
     data() {
         return {
