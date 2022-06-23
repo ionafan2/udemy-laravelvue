@@ -11,7 +11,7 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        {{ review.created_at | moment("from", "now", true) }}
+                        {{ review.created_at | moment("from") }}
                     </div>
                 </div>
                 <div class="row pt-4 pb-4">
