@@ -12,14 +12,14 @@
                 <input type="text" name="startDate" id="startDate" :class="[{'is-invalid': errorFor('startDate')}]"
                        class="form-control form-control-sm" placeholder="Start date"
                        v-model="startDate">
-                <v-errors :errors="errorFor('startDate')"></v-errors>
+                <validation-errors :errors="errorFor('startDate')"></validation-errors>
             </div>
             <div class="form-group col-md-6">
                 <label for="endDate">To:</label>
                 <input type="text" name="endDate" id="endDate" :class="[{'is-invalid': errorFor('endDate')}]"
                        class="form-control form-control-sm" placeholder="End date"
                        v-model="endDate">
-                <v-errors :errors="errorFor('endDate')"></v-errors>
+                <validation-errors :errors="errorFor('endDate')"></validation-errors>
             </div>
         </div>
         <div class="form row mt-2">

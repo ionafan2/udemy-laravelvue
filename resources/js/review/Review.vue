@@ -42,7 +42,7 @@
                                 v-model="review.content"
                                 :class="[{'is-invalid': errorFor('content')}]"
                             ></textarea>
-                            <v-errors :errors="errorFor('content')"></v-errors>
+                            <validation-errors :errors="errorFor('content')"></validation-errors>
                         </div>
 
                         <button
