@@ -17,7 +17,19 @@
             <review-list :bookable-id="this.$route.params.id"></review-list>
         </div>
         <div class="col-md-5">
-            <availability :bookable-id="this.$route.params.id" @availability="checkPrice($event)"></availability>
+            <availability
+                :bookable-id="this.$route.params.id"
+                @availability="checkPrice($event)"
+                class="mb-4"
+            ></availability>
+
+            <transition name="fade">
+                <price-breakdown v-if="price" :price="price" class="mb-4"></price-breakdown>
+            </transition>
+
+            <transition name="fade">
+                <button class="btn btn-outline-secondary btn-block" v-if="price">Book now</button>
+            </transition>
         </div>
     </div>
 </template>
@@ -25,13 +37,16 @@
 <script>
 import Availability from "./Availability";
 import ReviewList from "./ReviewList";
+import PriceBreakdown from "./PriceBreakdown";
+
 import { mapState } from "vuex";
 
 export default {
     name: "Bookable",
     components: {
         Availability,
-        ReviewList
+        ReviewList,
+        PriceBreakdown
     },
     data() {
         return {
