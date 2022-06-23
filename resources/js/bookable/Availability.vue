@@ -61,7 +61,7 @@ export default {
         }
     },
     methods: {
-        periodSelected(event, startDate, endDate) {
+        async periodSelected(event, startDate, endDate) {
             this.loading = true;
             this.errors = null;
 
@@ -73,26 +73,24 @@ export default {
                 endDate: this.endDate
             })
 
-            axios.get(
-                `/api/bookables/${this.bookableId}/availability`, {
-                    params: {
-                        startDate: this.startDate,
-                        endDate: this.endDate
-                    }
-                }).then(result => {
-                this.status = result.status;
+            try {
+                this.status = (await axios.get(
+                    `/api/bookables/${this.bookableId}/availability?startDate=${this.startDate}&endDate=${this.endDate}`
+                )).status;
 
-                console.log(result);
-                this.loading = false;
+                this.$emit("availability", this.hasAvailability);
 
-            }).catch(error => {
-                if (is422(error)) {
-                    this.errors = error.response.data.errors;
+            } catch (err) {
+
+                if (is422(err)) {
+                    this.errors = err.response.data.errors;
                 }
 
-                this.status = error.response.status;
-            }).then(() => this.loading = false);
+                this.status = err.response.status;
+                this.$emit("availability", this.hasAvailability);
+            }
 
+            this.loading = false;
         }
     },
     created() {
