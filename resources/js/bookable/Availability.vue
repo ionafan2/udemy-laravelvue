@@ -29,7 +29,10 @@
                 <DatePicker @period-selected="periodSelected" format="DD/MM/YYYY"></DatePicker>
             </div>
         </div>
-        <div v-if="loading">LOADING........</div>
+        <span v-if="!loading">Select dates above</span>
+        <span v-if="loading">
+            <i class="fas fa-circle-notch fa-spin"></i> Checking...
+        </span>
     </div>
 </template>
 
