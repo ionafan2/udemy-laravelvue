@@ -33,6 +33,14 @@ export default {
         }
     },
     getters: {
-        itemsInBasket: (state) => state.basket.items.length
+        itemsInBasket: (state) => state.basket.items.length,
+        inBasketAlready(state) {
+            return function (id) {
+                return state.basket.items.reduce(
+                    (result, item) => result || item.bookable.id === id,
+                    false
+                );
+            }
+        }
     }
 };
