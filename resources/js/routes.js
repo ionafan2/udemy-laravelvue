@@ -2,6 +2,7 @@ import VueRouter from "vue-router";
 import Bookables from "./bookables/Bookables";
 import Bookable from "./bookable/Bookable";
 import Review from "./review/Review";
+import Basket from "./basket/Basket";
 
 const router = new VueRouter({
     mode:"history",
@@ -21,6 +22,11 @@ const router = new VueRouter({
             component:  Review,
             name: "review"
         },
+        {
+            path: "/basket",
+            component: Basket,
+            name: "basket"
+        }
     ]
 });
 

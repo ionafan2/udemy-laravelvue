@@ -3,7 +3,7 @@
         <nav class="navbar bg-white border-bottom navbar-light">
             <router-link class="nav-link navbar-brand" :to="{name: 'home'}">Home</router-link>
 
-            <router-link class="btn nav-button" :to="{name: 'home'}">
+            <router-link class="btn nav-button" :to="{name: 'basket'}">
                 Basket
                 <span v-if="itemsInBasket" class="badge bg-success">{{ itemsInBasket }}</span>
             </router-link>
