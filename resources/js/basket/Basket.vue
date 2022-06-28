@@ -44,7 +44,7 @@
                 </div>
                 <hr />
                 <div class="row">
-                    <div class="col-md-12 mb-3">
+                    <div class="col-md-12 mb-3 d-grid gap-2">
                         <button type="submit" class="btn btn-lg btn-primary btn-block">Book now!</button>
                     </div>
                 </div>
