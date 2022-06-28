@@ -11,10 +11,30 @@
                     </h6>
                 </div>
 
-                <div v-for="item in basket" :key="item.bookable.id">
-                    {{ item.bookable.id }}
-                </div>
-
+                <transition-group name="fade" tag="div">
+                    <div v-for="item in basket" :key="item.bookable.id">
+                        <div class="pt-2 pb-2 border-top d-flex justify-content-between">
+                            <span>
+                                <router-link :to="{name: 'bookable', params: {id: item.bookable.id}}">{{
+                                        item.bookable.title
+                                    }}</router-link>
+                            </span>
+                            <span class="font-weight-bold">${{ item.price.total }}</span>
+                        </div>
+                        <div class="pt-2 pb-2 d-flex justify-content-between">
+                            <span>From {{ item.dates.startDate }}</span>
+                            <span>To {{ item.dates.endDate }}</span>
+                        </div>
+                        <div class="pt-2 pb-2 text-right">
+                            <button
+                                class="btn btn-sm btn-outline-secondary"
+                                @click="$store.dispatch('removeFromBasket', item.bookable.id)"
+                            >
+                                <i class="fas fa-trash-alt"></i>
+                            </button>
+                        </div>
+                    </div>
+                </transition-group>
             </div>
         </div>
     </div>
