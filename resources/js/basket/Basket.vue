@@ -145,6 +145,7 @@ export default {
                         endDate: basketItem.dates.endDate
                     }))
                 });
+                this.$store.dispatch("clearBasket");
 
             } catch (err) {
 
