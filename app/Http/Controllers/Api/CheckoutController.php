@@ -49,13 +49,15 @@ class CheckoutController extends Controller
 
         $bookings = collect($bookingsData)->map(function ($bookingData) use ($addressData) {
 
+            $bookable = Bookable::findOrFail($bookingData['bookable_id']);
+
             $booking = new Booking();
             $booking->bookable_id = $bookingData['bookable_id'];
             $booking->startDate = $bookingData['startDate'];
             $booking->endDate = $bookingData['endDate'];
 
-            $booking->price = 200;
-
+            $booking->price = $bookable->priceFor($booking->from, $booking->to)['total'];
+            $booking->bookable()->associate($bookable);
             $booking->address()->associate(Address::create($addressData));
 
             $booking->save();
