@@ -6,46 +6,54 @@
                     <div class="col-md-6 mb-3">
                         <label for="first_names">First names</label>
                         <input type="text" class="form-control" name="first_names" v-model="customer.first_names" />
+                        <validation-errors :errors="errorFor('first_names')"></validation-errors>
                     </div>
                     <div class="col-md-6 mb-3">
                         <label for="last_name">Last name</label>
                         <input type="text" class="form-control" name="last_name" v-model="customer.last_name"  />
+                        <validation-errors :errors="errorFor('last_name')"></validation-errors>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-12 mb-3">
                         <label for="email">Email</label>
                         <input type="text" class="form-control" name="email" v-model="customer.email" />
+                        <validation-errors :errors="errorFor('email')"></validation-errors>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-6 mb-3">
                         <label for="street">Street</label>
                         <input type="text" class="form-control" name="street" v-model="customer.street" />
+                        <validation-errors :errors="errorFor('street')"></validation-errors>
                     </div>
                     <div class="col-md-6 mb-3">
                         <label for="city">City</label>
                         <input type="text" class="form-control" name="city" v-model="customer.city" />
+                        <validation-errors :errors="errorFor('city')"></validation-errors>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-6 mb-3">
                         <label for="country">Country</label>
                         <input type="text" class="form-control" name="country"  v-model="customer.country"/>
+                        <validation-errors :errors="errorFor('country')"></validation-errors>
                     </div>
                     <div class="col-md-4 mb-3">
                         <label for="state">State</label>
                         <input type="text" class="form-control" name="state" v-model="customer.state"/>
+                        <validation-errors :errors="errorFor('')"></validation-errors>
                     </div>
                     <div class="col-md-2 mb-3">
                         <label for="zip">Zip</label>
                         <input type="text" class="form-control" name="zip" v-model="customer.zip" />
+                        <validation-errors :errors="errorFor('')"></validation-errors>
                     </div>
                 </div>
                 <hr />
                 <div class="row">
                     <div class="col-md-12 mb-3 d-grid gap-2">
-                        <button type="submit" class="btn btn-lg btn-primary btn-block">Book now!</button>
+                        <button type="submit" @click.prevent="book" class="btn btn-lg btn-primary btn-block">Book now!</button>
                     </div>
                 </div>
 
@@ -91,10 +99,15 @@
 
 <script>
 import {mapGetters, mapState} from "vuex";
+import ValidationErrors from "../shared/mixins/validationErrors";
 
 export default {
+    mixins: [
+        ValidationErrors
+    ],
     data() {
         return {
+            loading: false,
             customer: {
                 first_names: null,
                 last_name: null,
@@ -112,6 +125,27 @@ export default {
         ...mapState({
             basket: state => state.basket.items
         })
+    },
+    methods: {
+        async book() {
+            this.loading = true;
+
+            try {
+                await axios.post(`/api/checkout`, {
+                    customer: this.customer,
+                    bookings: this.basket.map(basketItem => ({
+                        bookable_id: basketItem.bookable.id,
+                        startDate: basketItem.dates.startDate,
+                        endDate: basketItem.dates.endDate
+                    }))
+                });
+
+            } catch (err) {
+
+            }
+
+            this.loading = false;
+        }
     }
 };
 </script>
