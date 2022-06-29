@@ -11,6 +11,7 @@ class BookingFactory extends Factory
      * Define the model's default state.
      *
      * @return array
+     * @throws \Exception
      */
     public function definition()
     {
@@ -19,7 +20,8 @@ class BookingFactory extends Factory
 
         return [
             'startDate' => $startDate,
-            'endDate' => $endDate
+            'endDate' => $endDate,
+            'price' => random_int(200, 5000)
         ];
     }
 }

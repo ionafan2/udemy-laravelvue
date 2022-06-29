@@ -12,6 +12,7 @@ class BookingsTableSeeder extends Seeder
      * Run the database seeds.
      *
      * @return void
+     * @throws \Exception
      */
     public function run()
     {
@@ -25,7 +26,8 @@ class BookingsTableSeeder extends Seeder
 
                 $booking = Booking::factory()->make([
                     'startDate' => $startDate,
-                    'endDate' => $endDate
+                    'endDate' => $endDate,
+                    'price' => random_int(200, 5000)
                 ]);
                 $bookings->push($booking);
             }
