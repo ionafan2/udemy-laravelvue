@@ -4,6 +4,7 @@ import Bookable from "./bookable/Bookable";
 import Review from "./review/Review";
 import Basket from "./basket/Basket";
 import Login from "./auth/Login";
+import Register from "./auth/Register";
 
 const router = new VueRouter({
     mode:"history",
@@ -33,6 +34,11 @@ const router = new VueRouter({
             component: Login,
             name: "login"
         },
+        {
+            path: "/auth/register",
+            component: Register,
+            name: "register"
+        }
     ]
 });
 
