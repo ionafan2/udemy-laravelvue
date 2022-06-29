@@ -38,6 +38,7 @@
                         id="password"
                         placeholder="Enter your password"
                         class="form-control"
+                        autocomplete="new-password"
                         v-model="user.password"
                         :class="[{'is-invalid': errorFor('password')}]"
                     />
@@ -52,6 +53,7 @@
                         id="password_confirmation"
                         placeholder="Confirm your password"
                         class="form-control"
+                        autocomplete="new-password"
                         v-model="user.password_confirmation"
                         :class="[{'is-invalid': errorFor('password_confirmation')}]"
                     />
@@ -78,11 +80,12 @@
 </template>
 
 <script>
-import validationErrors from "../shared/mixins/validationErrors";
-import {logIn} from "./../shared/utils/auth";
+
+import ValidationErrors from "../shared/mixins/validationErrors";
+import {logIn} from "../shared/utils/auth";
 
 export default {
-    mixins: [validationErrors],
+    mixins: [ValidationErrors],
     data() {
         return {
             user: {
@@ -100,15 +103,14 @@ export default {
             this.errors = null;
 
             try {
-                await axios.get("/sanctum/csrf-cookie");
-                await axios.post("/login", {
-                    email: this.email,
-                    password: this.password
-                });
+                const response = await axios.post("/register", this.user);
 
-                logIn();
-                this.$store.dispatch("loadUser");
-                this.$router.push({name: "home"});
+                if (201 === response.status) {
+                    logIn();
+                    this.$store.dispatch("loadUser");
+                    this.$router.push({ name: "home" });
+                }
+
             } catch (error) {
                 this.errors = error.response && error.response.data.errors;
             }
