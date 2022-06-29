@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="row">
-            <div class="col-md-8">
+            <div class="col-md-8"  v-if="itemsInBasket">
                 <div class="row">
                     <div class="col-md-6 mb-3">
                         <label for="first_names">First names</label>
@@ -42,12 +42,12 @@
                     <div class="col-md-4 mb-3">
                         <label for="state">State</label>
                         <input type="text" class="form-control" name="state" v-model="customer.state"/>
-                        <validation-errors :errors="errorFor('')"></validation-errors>
+                        <validation-errors :errors="errorFor('state')"></validation-errors>
                     </div>
                     <div class="col-md-2 mb-3">
                         <label for="zip">Zip</label>
                         <input type="text" class="form-control" name="zip" v-model="customer.zip" />
-                        <validation-errors :errors="errorFor('')"></validation-errors>
+                        <validation-errors :errors="errorFor('zip')"></validation-errors>
                     </div>
                 </div>
                 <hr />
@@ -58,6 +58,12 @@
                 </div>
 
             </div>
+            <div class="col-md-8 bg-light rounded-3" v-else>
+                <div class="container-fluid py-5 text-center">
+                    <h1 class="display-5 fw-bold">Empty</h1>
+                </div>
+            </div>
+
             <div class="col-md-4">
                 <div class="d-flex justify-content-between">
                     <h6 class="text-uppercase text-secondary font-weight-bolder">Your Cart</h6>
