@@ -45,4 +45,12 @@ class LoginController extends Controller
             return response(null, 204);
         }
     }
+
+    protected function loggedOut(Request $request)
+    {
+        if ($request->isXmlHttpRequest()) {
+            return response(null, 204);
+        }
+    }
+
 }
