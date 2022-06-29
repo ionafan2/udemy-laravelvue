@@ -58,13 +58,5 @@ const app = new window.Vue({
     },
     async beforeCreate() {
         this.$store.dispatch('loadStoredState');
-
-        await axios.get('/sanctum/csrf-cookie');
-        await axios.post('/login', {
-            email: "daugherty.jayda@example.com",
-            password: "password"
-        });
-
-        await axios.get('/user');
     }
 });

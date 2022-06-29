@@ -5,6 +5,7 @@
                 <div class="mb-3">
                     <label for="email">E-mail</label>
                     <input
+                        autocomplete="username"
                         type="text"
                         name="email"
                         id="email"
@@ -13,13 +14,13 @@
                         v-model="email"
                         :class="[{'is-invalid': errorFor('email')}]"
                     />
-                    <v-errors :errors="errorFor('email')"></v-errors>
+                    <validation-errors :errors="errorFor('email')"></validation-errors>
                 </div>
-
 
                 <div class="mb-3">
                     <label for="password">Password</label>
                     <input
+                        autocomplete="current-password"
                         type="password"
                         name="password"
                         id="password"
@@ -28,10 +29,13 @@
                         v-model="password"
                         :class="[{'is-invalid': errorFor('password')}]"
                     />
-                    <v-errors :errors="errorFor('password')"></v-errors>
+                    <validation-errors :errors="errorFor('password')"></validation-errors>
                 </div>
+
                 <div class="mb-3 d-grid gap-2">
-                    <button type="submit" class="btn btn-primary btn-lg btn-block">Log-in</button>
+                    <button type="submit" :disabled="loading" @click.prevent="login"
+                            class="btn btn-primary btn-lg btn-block">Log-in
+                    </button>
                 </div>
 
                 <hr/>
@@ -59,8 +63,28 @@ export default {
     data() {
         return {
             email: null,
-            password: null
+            password: null,
+            loading: false
         };
+    },
+    methods: {
+        async login() {
+            this.loading = true;
+            this.errors = false;
+
+            try {
+                await axios.get("/sanctum/csrf-cookie");
+                await axios.post("/login", {
+                    email: this.email,
+                    password: this.password
+                });
+                await axios.get("/user");
+            } catch (error) {
+                this.errors = error.response && error.response.data.errors;
+            }
+
+            this.loading = false;
+        }
     }
 };
 </script>
